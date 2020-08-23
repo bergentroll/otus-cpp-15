@@ -8,10 +8,11 @@ addons:
     packages:
       - libboost-test-dev
       - libboost-program-options-dev
-      - g++-8
+      - libdlib-dev
+      - libopenblas-dev
 
 env:
-  - BUILD_TYPE=Release CXX=/usr/bin/g++-8
+  - BUILD_TYPE=Release
 
 script:
   - set -e
