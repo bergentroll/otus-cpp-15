@@ -19,10 +19,7 @@ include_directories("inc/")
 set(Boost_USE_STATIC_LIBS ON)
 set(Boost_USE_MULTITHREADED ON)
 set(Boost_USE_STATIC_RUNTIME OFF)
-find_package(
-  Boost 1.65
-  COMPONENTS program_options
-  OPTIONAL_COMPONENTS unit_test_framework)
+find_package(Boost 1.65 COMPONENTS program_options)
 find_package(dlib)
 
 find_package(Threads REQUIRED)
@@ -42,23 +39,6 @@ target_link_libraries(
   #${CMAKE_PROJECT_NAME}-obj
   ${Boost_PROGRAM_OPTIONS_LIBRARY}
   dlib::dlib)
-
-### Tests #####################################################################
-
-if(Boost_UNIT_TEST_FRAMEWORK_FOUND)
-  add_executable(test-suite ${TEST_PATH}/test.cpp)
-  target_link_libraries(
-    test-suite
-    PRIVATE
-    ${CMAKE_PROJECT_NAME}-obj
-    Boost::unit_test_framework)
-  add_test(test-suite test-suite)
-else()
-  message(
-    WARNING "Test suite will not be launched because Boost.Test not found.")
-endif()
-
-enable_testing()
 
 ### Packing ###################################################################
 
