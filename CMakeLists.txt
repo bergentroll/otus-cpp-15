@@ -23,6 +23,7 @@ find_package(
   Boost 1.65
   COMPONENTS program_options
   OPTIONAL_COMPONENTS unit_test_framework)
+find_package(dlib)
 
 find_package(Threads REQUIRED)
 
@@ -38,8 +39,9 @@ add_executable(
   ${SRC_PATH}/main.cpp)
 target_link_libraries(
   ${CMAKE_PROJECT_NAME}
-  ${CMAKE_PROJECT_NAME}-obj
-  ${Boost_PROGRAM_OPTIONS_LIBRARY})
+  #${CMAKE_PROJECT_NAME}-obj
+  ${Boost_PROGRAM_OPTIONS_LIBRARY}
+  dlib::dlib)
 
 ### Tests #####################################################################
 

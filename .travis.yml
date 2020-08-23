@@ -9,7 +9,6 @@ addons:
       - libboost-test-dev
       - libboost-program-options-dev
       - libdlib-dev
-      - libopenblas-dev
 
 env:
   - BUILD_TYPE=Release
