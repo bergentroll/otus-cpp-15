@@ -18,28 +18,7 @@ namespace otus {
     data(data),
     kCentroid(kernel_type(gamma), accuracy) { }
 
-    void operator()(int numberOfClusters) {
-      dlib::kkmeans<kernel_type> kMeans(kCentroid);
-
-      std::vector<sample_type> samples;
-      std::vector<sample_type> initialCenters;
-
-      for (auto const & point: data)
-        samples.push_back({ point.x, point.y });
-
-      data.clear();
-
-      kMeans.set_number_of_centers(numberOfClusters);
-      pick_initial_centers(
-          numberOfClusters,
-          initialCenters,
-          samples,
-          kMeans.get_kernel());
-
-      kMeans.train(samples, initialCenters);
-
-      for (auto const &i: samples) data.push_back({kMeans(i), i(0), i(1)});
-    }
+    void operator()(int numberOfClusters);
 
   private:
     using sample_type = dlib::matrix<float, 2, 1>;

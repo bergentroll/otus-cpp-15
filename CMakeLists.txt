@@ -20,17 +20,18 @@ find_package(dlib)
 
 ### Main targets ##############################################################
 
-# add_library(
-#   ${CMAKE_PROJECT_NAME}-obj
-#   STATIC
-#   ${SRC_PATH} ... )
+add_library(
+  ${CMAKE_PROJECT_NAME}-obj
+  STATIC
+  ${SRC_PATH}/clusterer.cpp
+  ${SRC_PATH}/get_arg.cpp)
 
 add_executable(
   ${CMAKE_PROJECT_NAME}
   ${SRC_PATH}/main.cpp)
 target_link_libraries(
   ${CMAKE_PROJECT_NAME}
-  #${CMAKE_PROJECT_NAME}-obj
+  ${CMAKE_PROJECT_NAME}-obj
   dlib::dlib)
 
 ### Packing ###################################################################
