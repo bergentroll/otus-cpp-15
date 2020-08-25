@@ -1,12 +1,21 @@
 #include <iostream>
 
 #include "clusterer.hpp"
+#include "get_arg.hpp"
 
 using namespace std;
 using namespace otus;
 
-int main() {
-  int numberOfClusters { 3 }; // TODO
+int main(int argc, char const ** argv) {
+  int numberOfClusters;
+
+  try {
+    numberOfClusters = get_arg(argc, argv);
+  }
+  catch (InvalidArgument const &e) {
+    cerr << "Error: " << e.what() << endl;
+    return 1;
+  }
 
   std::vector<Point> points { };
 
