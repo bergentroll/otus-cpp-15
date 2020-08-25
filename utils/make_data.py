@@ -1,6 +1,7 @@
 #! /usr/bin/env python3
 
 from random import randrange
+from sys import argv
 
 
 def generate_point():
@@ -9,5 +10,10 @@ def generate_point():
 
 
 if __name__ == '__main__':
-    for i in range(200):
+    points_num = 200
+
+    if len(argv) > 1:
+        points_num = int(argv[1])
+
+    for i in range(points_num):
         generate_point()
