@@ -1,10 +1,8 @@
 #! /usr/bin/env python3
 
-from sys import stdin
 import matplotlib.pyplot as plt
-import numpy as np
 
-colors = {0: 'red', 1: 'green', 2: 'blue'}
+from sys import argv, stdin
 
 
 class Point:
@@ -25,6 +23,9 @@ if __name__ == '__main__':
     ax.yaxis.set_visible(False)
 
     for p in points:
-        plt.scatter(p.x, p.y, c=colors[p.cluster])
+        plt.scatter(p.x, p.y, c=f'C{p.cluster}')
 
-    plt.show()
+    if len(argv) > 1 and argv[1] == 'show':
+        plt.show()
+    else:
+        plt.savefig('diag.png')
