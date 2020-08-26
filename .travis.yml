@@ -27,11 +27,8 @@ script:
   - cmake --build . --target package
 
 after_success:
-  -|
-    ./bin/kkmeans 3 < data/kkmeans_ex.txt > points.txt
-    for i in {0..2}; do
-      printf "Cluster ${i}: "; grep "^$i" points.txt | wc -l
-    done
+  - ./bin/kkmeans 3 < data/kkmeans_ex.txt > points.txt
+  - for i in {0..2}; do printf "Cluster ${i}: "; grep "^$i" points.txt | wc -l; done
 
 deploy:
   - provider: bintray
