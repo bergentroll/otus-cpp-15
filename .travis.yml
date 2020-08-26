@@ -6,15 +6,21 @@ addons:
   apt:
     update: false
     packages:
-      - libboost-test-dev
-      - libboost-program-options-dev
-      - libdlib-dev
+      - python3-pip
+      - python3-setuptools
+      - python3-wheel
+
+install:
+  - pip3 install conan==1.28
+  - conan profile new default --detect
+  - conan profile update settings.compiler.libcxx=libstdc++11 default
 
 env:
   - BUILD_TYPE=Release
 
 script:
   - set -e
+  - conan install -s build_type=${BUILD_TYPE} --build missing .
   - cmake --DCMAKE_BUILD_TYPE=${BUILD_TYPE} .
   - cmake --build .
   - cmake --build . --target test

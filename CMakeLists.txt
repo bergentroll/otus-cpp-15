@@ -16,7 +16,15 @@ set(SRC_PATH "src/")
 set(TEST_PATH "test/")
 include_directories("inc/")
 
-find_package(dlib)
+if(EXISTS ${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
+  include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
+  conan_basic_setup()
+  find_package(Threads REQUIRED)
+  set(DLIB dlib openblas ${CMAKE_THREAD_LIBS_INIT})
+else()
+  find_package(dlib)
+  set(DLIB dlib::dlib)
+endif()
 
 ### Main targets ##############################################################
 
@@ -32,7 +40,7 @@ add_executable(
 target_link_libraries(
   ${CMAKE_PROJECT_NAME}
   ${CMAKE_PROJECT_NAME}-obj
-  dlib::dlib)
+  ${DLIB})
 
 ### Packing ###################################################################
 
