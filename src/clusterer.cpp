@@ -4,10 +4,10 @@ using namespace otus;
 using namespace std;
 
 void Clusterer::operator()(int numberOfClusters) {
-  dlib::kkmeans<kernel_type> kMeans(kCentroid);
+  dlib::kkmeans<KernelType> kMeans(kCentroid);
 
-  vector<sample_type> samples;
-  vector<sample_type> initialCenters;
+  vector<SampleType> samples;
+  vector<SampleType> initialCenters;
 
   for (auto const & point: data)
     samples.push_back({ point.x, point.y });

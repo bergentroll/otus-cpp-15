@@ -16,15 +16,15 @@ namespace otus {
   public:
     Clusterer(std::vector<Point> &data, float gamma=0.1, float accuracy=0.01):
     data(data),
-    kCentroid(kernel_type(gamma), accuracy) { }
+    kCentroid(KernelType(gamma), accuracy) { }
 
     void operator()(int numberOfClusters);
 
   private:
-    using sample_type = dlib::matrix<float, 2, 1>;
-    using kernel_type = dlib::radial_basis_kernel<sample_type>;
+    using SampleType = dlib::matrix<float, 2, 1>;
+    using KernelType = dlib::radial_basis_kernel<SampleType>;
 
     std::vector<Point> & data;
-    dlib::kcentroid<kernel_type> kCentroid;
+    dlib::kcentroid<KernelType> kCentroid;
   };
 }
